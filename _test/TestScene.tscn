@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://djabf2cb2ouy5"]
+
+[ext_resource type="PackedScene" uid="uid://da5ufcmxax5jj" path="res://entities/vehicles/red_car.tscn" id="1_jwrhy"]
+[ext_resource type="Script" uid="uid://domtxx0866cey" path="res://_test/test_scene.gd" id="1_tqyy3"]
+
+[node name="TestScene" type="Node2D"]
+script = ExtResource("1_tqyy3")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 298.0
+offset_top = 282.0
+offset_right = 306.0
+offset_bottom = 290.0
+text = "Calculate Rectangle"
+
+[node name="BaseVehicle" parent="." instance=ExtResource("1_jwrhy")]
+position = Vector2(3, 159)
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://bn74sui4owpma"]
+
+[ext_resource type="PackedScene" uid="uid://bkmukmg7sma5v" path="res://entities/vehicles/base_vehicle.tscn" id="1_gkosd"]
+[ext_resource type="Texture2D" uid="uid://bco7y7g55q02j" path="res://entities/vehicles/white-car.png" id="2_d1bsm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvc40"]
+size = Vector2(27, 16)
+
+[node name="BaseVehicle" instance=ExtResource("1_gkosd")]
+speed = -200
+metadata/_edit_horizontal_guides_ = [0.0]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture_filter = 1
+position = Vector2(17, 16)
+scale = Vector2(-1, -1)
+texture = ExtResource("2_d1bsm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="1"]
+texture_filter = 1
+position = Vector2(604, 16)
+scale = Vector2(-1, -1)
+texture = ExtResource("2_d1bsm")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." index="2"]
+texture_filter = 1
+position = Vector2(486, 16)
+scale = Vector2(-1, -1)
+texture = ExtResource("2_d1bsm")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." index="3"]
+texture_filter = 1
+position = Vector2(158, 16)
+scale = Vector2(-1, -1)
+texture = ExtResource("2_d1bsm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="4"]
+position = Vector2(17.5, 16)
+shape = SubResource("RectangleShape2D_nvc40")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="5"]
+position = Vector2(484, 16)
+shape = SubResource("RectangleShape2D_nvc40")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="6"]
+position = Vector2(603, 16)
+shape = SubResource("RectangleShape2D_nvc40")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." index="7"]
+position = Vector2(157, 16)
+shape = SubResource("RectangleShape2D_nvc40")
+
+[node name="Box" parent="." index="8"]
+offset_right = 797.0

@@ -1,0 +1,108 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnk48y71pw3xc"]
+
+[ext_resource type="Script" uid="uid://bvg5sxvdfk28j" path="res://entities/three_frogs/three_frogs.gd" id="1_okl6f"]
+[ext_resource type="Texture2D" uid="uid://c1pi78ixdfwgm" path="res://entities/two_frogs/two-frogs.png" id="2_okl6f"]
+[ext_resource type="Script" uid="uid://cqg7dt2wruifi" path="res://entities/three_frogs/moving_zone.gd" id="3_u2thi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e24dh"]
+size = Vector2(59, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vadmv"]
+size = Vector2(62.5, 10)
+
+[node name="ThreeFrogs" type="Node2D"]
+script = ExtResource("1_okl6f")
+speed = -130
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(33, 13)
+texture = ExtResource("2_okl6f")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(313, 13)
+texture = ExtResource("2_okl6f")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(598, 13)
+texture = ExtResource("2_okl6f")
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(742, 13)
+texture = ExtResource("2_okl6f")
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(452, 13)
+texture = ExtResource("2_okl6f")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(172, 13)
+texture = ExtResource("2_okl6f")
+
+[node name="MovingZone" type="Area2D" parent="." groups=["platform"]]
+position = Vector2(49, 15)
+collision_layer = 128
+collision_mask = 0
+script = ExtResource("3_u2thi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MovingZone"]
+position = Vector2(-17, -2)
+shape = SubResource("RectangleShape2D_e24dh")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="MovingZone"]
+position = Vector2(123, -2)
+shape = SubResource("RectangleShape2D_e24dh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="MovingZone"]
+position = Vector2(264, -2)
+shape = SubResource("RectangleShape2D_e24dh")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="MovingZone"]
+position = Vector2(403, -2)
+shape = SubResource("RectangleShape2D_e24dh")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="MovingZone"]
+position = Vector2(549, -2)
+shape = SubResource("RectangleShape2D_e24dh")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="MovingZone"]
+position = Vector2(692, -2)
+shape = SubResource("RectangleShape2D_e24dh")
+
+[node name="KillingZone" type="Area2D" parent="." groups=["splash"]]
+position = Vector2(49, 15)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillingZone"]
+position = Vector2(53, -2)
+shape = SubResource("RectangleShape2D_vadmv")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="KillingZone"]
+position = Vector2(474, -2)
+shape = SubResource("RectangleShape2D_vadmv")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="KillingZone"]
+position = Vector2(620, -2)
+shape = SubResource("RectangleShape2D_vadmv")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="KillingZone"]
+position = Vector2(762, -2)
+shape = SubResource("RectangleShape2D_vadmv")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="KillingZone"]
+position = Vector2(332.75, -3)
+shape = SubResource("RectangleShape2D_vadmv")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="KillingZone"]
+position = Vector2(193, -2)
+shape = SubResource("RectangleShape2D_vadmv")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="."]
+offset_right = 850.0
+offset_bottom = 25.0

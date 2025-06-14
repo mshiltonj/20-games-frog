@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkmukmg7sma5v"]
+
+[ext_resource type="Script" uid="uid://5bfmv0gsqkgv" path="res://entities/vehicles/base_vehicle.gd" id="1_qbifq"]
+
+[node name="BaseVehicle" type="Area2D" groups=["vehicles"]]
+collision_layer = 2
+script = ExtResource("1_qbifq")
+
+[node name="Box" type="ReferenceRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0

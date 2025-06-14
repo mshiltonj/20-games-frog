@@ -1,0 +1,68 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpnama54s8x1v"]
+
+[ext_resource type="PackedScene" uid="uid://bkmukmg7sma5v" path="res://entities/vehicles/base_vehicle.tscn" id="1_li582"]
+[ext_resource type="Texture2D" uid="uid://ccj83uw4hkc1c" path="res://entities/vehicles/bulldozer.png" id="2_hdx5v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u4cae"]
+size = Vector2(26, 24)
+
+[node name="BaseVehicle" instance=ExtResource("1_li582")]
+speed = 180
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture_filter = 1
+position = Vector2(17, 14)
+texture = ExtResource("2_hdx5v")
+
+[node name="Sprite2D6" type="Sprite2D" parent="." index="1"]
+texture_filter = 1
+position = Vector2(632, 14)
+texture = ExtResource("2_hdx5v")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="2"]
+texture_filter = 1
+position = Vector2(574, 14)
+texture = ExtResource("2_hdx5v")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." index="3"]
+texture_filter = 1
+position = Vector2(328, 13)
+texture = ExtResource("2_hdx5v")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." index="4"]
+texture_filter = 1
+position = Vector2(269, 13)
+texture = ExtResource("2_hdx5v")
+
+[node name="Sprite2D5" type="Sprite2D" parent="." index="5"]
+texture_filter = 1
+position = Vector2(76, 14)
+texture = ExtResource("2_hdx5v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="6"]
+position = Vector2(17, 14)
+shape = SubResource("RectangleShape2D_u4cae")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="7"]
+position = Vector2(632, 14)
+shape = SubResource("RectangleShape2D_u4cae")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="8"]
+position = Vector2(573, 14)
+shape = SubResource("RectangleShape2D_u4cae")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="." index="9"]
+position = Vector2(328, 13)
+shape = SubResource("RectangleShape2D_u4cae")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="." index="10"]
+position = Vector2(269, 13)
+shape = SubResource("RectangleShape2D_u4cae")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="." index="11"]
+position = Vector2(76, 15)
+shape = SubResource("RectangleShape2D_u4cae")
+
+[node name="Box" parent="." index="12"]
+offset_right = 801.0
+offset_bottom = 35.0

@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://da5ufcmxax5jj"]
+
+[ext_resource type="PackedScene" uid="uid://bkmukmg7sma5v" path="res://entities/vehicles/base_vehicle.tscn" id="1_3lowm"]
+[ext_resource type="Texture2D" uid="uid://ceeoskh601dbq" path="res://entities/vehicles/car1.png" id="2_bxt2h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgbki"]
+size = Vector2(28, 16)
+
+[node name="BaseVehicle" instance=ExtResource("1_3lowm")]
+speed = -180
+metadata/_edit_horizontal_guides_ = [0.0]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture_filter = 1
+position = Vector2(17, 11)
+scale = Vector2(-1, -1)
+texture = ExtResource("2_bxt2h")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." index="1"]
+texture_filter = 1
+position = Vector2(95, 11)
+scale = Vector2(-1, -1)
+texture = ExtResource("2_bxt2h")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." index="2"]
+texture_filter = 1
+position = Vector2(95, 11)
+scale = Vector2(-1, -1)
+texture = ExtResource("2_bxt2h")
+
+[node name="Sprite2D4" type="Sprite2D" parent="." index="3"]
+texture_filter = 1
+position = Vector2(340, 11)
+scale = Vector2(-1, -1)
+texture = ExtResource("2_bxt2h")
+
+[node name="Sprite2D6" type="Sprite2D" parent="." index="4"]
+texture_filter = 1
+position = Vector2(607, 11)
+scale = Vector2(-1, -1)
+texture = ExtResource("2_bxt2h")
+
+[node name="Sprite2D7" type="Sprite2D" parent="." index="5"]
+texture_filter = 1
+position = Vector2(701, 11)
+scale = Vector2(-1, -1)
+texture = ExtResource("2_bxt2h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="6"]
+position = Vector2(17, 11)
+shape = SubResource("RectangleShape2D_vgbki")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="7"]
+position = Vector2(95, 12)
+shape = SubResource("RectangleShape2D_vgbki")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="." index="8"]
+position = Vector2(340, 11)
+shape = SubResource("RectangleShape2D_vgbki")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="." index="9"]
+position = Vector2(607, 11)
+shape = SubResource("RectangleShape2D_vgbki")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="." index="10"]
+position = Vector2(701, 11)
+shape = SubResource("RectangleShape2D_vgbki")
+
+[node name="Box" parent="." index="11"]
+offset_right = 802.0
+offset_bottom = 36.0
+metadata/_edit_use_anchors_ = true

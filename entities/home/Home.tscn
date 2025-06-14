@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://td6hahlmkcpk"]
+
+[ext_resource type="Script" uid="uid://d36ymbta3seoa" path="res://entities/home/home.gd" id="1_d7k6o"]
+[ext_resource type="Texture2D" uid="uid://531s01y1qapa" path="res://entities/home/home.png" id="2_kw6nb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hf3db"]
+size = Vector2(60, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7k6o"]
+size = Vector2(64, 64)
+
+[node name="Home" type="Area2D" groups=["homes"]]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_d7k6o")
+
+[node name="OccupiedSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -6)
+texture = ExtResource("2_kw6nb")
+
+[node name="EnterArea" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_hf3db")
+
+[node name="HomeInUse" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HomeInUse"]
+visible = false
+texture_filter = 1
+shape = SubResource("RectangleShape2D_d7k6o")

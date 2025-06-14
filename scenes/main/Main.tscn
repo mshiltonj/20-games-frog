@@ -1,0 +1,92 @@
+[gd_scene load_steps=6 format=3 uid="uid://cs3y1u30qsk55"]
+
+[ext_resource type="Script" uid="uid://bvg8cd3ec7i58" path="res://scenes/main/main.gd" id="1_u1xfj"]
+[ext_resource type="FontFile" uid="uid://7xfpqkqa6i7t" path="res://assets/fonts/Bestime.ttf" id="2_nha0i"]
+
+[sub_resource type="Gradient" id="Gradient_q24mn"]
+offsets = PackedFloat32Array(0.146245, 0.766798, 1)
+colors = PackedColorArray(0.113725, 0.168627, 0.32549, 1, 0.134331, 0.391855, 0.620838, 1, 0.160784, 0.678431, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gyg6b"]
+gradient = SubResource("Gradient_q24mn")
+width = 800
+height = 600
+fill = 1
+fill_from = Vector2(0.5, 0.542735)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nha0i"]
+font = ExtResource("2_nha0i")
+font_size = 70
+font_color = Color(0, 0.894118, 0.211765, 1)
+stacked_shadow_count = 2
+stacked_shadow_0/offset = Vector2(3, 3)
+stacked_shadow_1/offset = Vector2(-1, -1)
+stacked_shadow_1/color = Color(1, 0.945098, 0.909804, 1)
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u1xfj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 802.0
+offset_bottom = 600.0
+texture = SubResource("GradientTexture2D_gyg6b")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="TheHoppinFrog" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.894118, 0.211765, 1)
+theme_override_fonts/font = ExtResource("2_nha0i")
+theme_override_font_sizes/font_size = 103
+text = "The
+Hoppin'
+Frog!"
+label_settings = SubResource("LabelSettings_nha0i")
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="HowTo" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "How To Play"
+
+[node name="Options" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Credits" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Credits"
+
+[node name="Quit" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvcmgx74gclsm"]
+
+[ext_resource type="PackedScene" uid="uid://bkmukmg7sma5v" path="res://entities/vehicles/base_vehicle.tscn" id="1_382hu"]
+[ext_resource type="Texture2D" uid="uid://dug0b5ec17fsu" path="res://entities/vehicles/yellow-car.png" id="2_01mif"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hyf1e"]
+size = Vector2(24, 16)
+
+[node name="BaseVehicle" instance=ExtResource("1_382hu")]
+metadata/_edit_horizontal_guides_ = [0.0]
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture_filter = 1
+position = Vector2(16, 13)
+texture = ExtResource("2_01mif")
+
+[node name="Sprite2D5" type="Sprite2D" parent="." index="1"]
+texture_filter = 1
+position = Vector2(459, 13)
+texture = ExtResource("2_01mif")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(16, 13)
+shape = SubResource("RectangleShape2D_hyf1e")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." index="3"]
+position = Vector2(460, 13)
+shape = SubResource("RectangleShape2D_hyf1e")
+
+[node name="Box" parent="." index="4"]
+offset_right = 778.0
+offset_bottom = 38.0
