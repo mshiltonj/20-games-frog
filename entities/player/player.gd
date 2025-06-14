@@ -23,6 +23,10 @@ signal got_home
 
 @onready var frame_counter : int = 0
 
+func _ready() -> void:
+	AudioManager.register("jump", load("res://assets/audio/sfx/jump.mp3"), 5)
+	AudioManager.register("death", load("res://assets/audio/sfx/death.mp3"), 5)
+
 func _input(event : InputEvent) -> void:
 
 	if jumping:
@@ -60,6 +64,7 @@ func _input(event : InputEvent) -> void:
 	
 	#platform_speed = 0
 	jumping = true
+	AudioManager.play("jump")
 	#move_timer.start()
 	
 
@@ -128,7 +133,7 @@ func move_player(delta : float) -> void:
 	
 	if (position - target_position).is_zero_approx():
 		if is_current_position_intersecting_hazards():
-			reset()
+			death()
 		else:
 			jumping = false
 			target_speed = 0
@@ -139,6 +144,10 @@ func _process(delta: float) -> void:
 	face_direction()
 	move_player(delta)
 
+
+func death() -> void:
+	AudioManager.play('death')
+	reset()
 
 func reset() -> void:
 	jumping = false
@@ -152,7 +161,7 @@ func reset() -> void:
 func _on_area_2d_area_entered(area :Area2D) -> void:
 	if area.is_in_group("vehicles") || area.is_in_group("splash") :
 		if ! jumping:
-			reset()
+			death()
 	elif area.is_in_group("platform"):
 		pass
 		#player.

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SceneManager="*res://globals/scene_manager.gd"
 StateManager="*res://globals/state_manager.gd"
+AudioManager="*res://globals/audio_manager.gd"
 
 [debug]
 

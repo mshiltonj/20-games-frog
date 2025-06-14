@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwq2umh4kemeu"]
+
+[ext_resource type="Script" uid="uid://c8uyuhu01v1vu" path="res://scenes/credits/credits.gd" id="1_677rg"]
+[ext_resource type="FontFile" uid="uid://bnwxsyvjp025u" path="res://assets/fonts/press-start.k.ttf" id="2_8vc4u"]
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 39.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_677rg")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 801.0
+offset_bottom = 527.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8vc4u")
+theme_override_font_sizes/font_size = 22
+text = "Credits"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+
+[node name="CreditsText" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+text = "loaded at runtime"
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8vc4u")
+text = "Back to Main Menu
+"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]

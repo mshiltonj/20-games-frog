@@ -25,7 +25,10 @@ const PLAYER_STARTING_POSITION : Vector2 = Vector2(370, 530)
 @onready var pool_ids : Dictionary[int, ObjectPool]
 
 func _ready() -> void:
+	AudioManager.register("soundtrack", load("res://assets/audio/music/8-bit-air-fight-158813.mp3"), -5, true)
+	AudioManager.register("home", load("res://assets/audio/sfx/home.mp3"))
 	StateManager.start_position = PLAYER_STARTING_POSITION
+	AudioManager.play("soundtrack")
 	add_to_score(0)
 
 func _process(_delta:float) -> void:
@@ -61,7 +64,7 @@ func _process(_delta:float) -> void:
 
 	for two_frogs_node : Node2D in two_frogs_set.get_children():
 		if two_frogs_node.position.x < -two_frogs_node.width():
-			two_frogs_node.position.x = 800
+			two_frogs_node.position.x = 800 + (two_frogs_node.width() - 800)
 
 	for five_log_node : Node2D in five_logs_set.get_children():
 		if five_log_node.position.x > 800 + (five_log_node.width() - 800):
@@ -81,5 +84,6 @@ func _on_player_jump_foward() -> void:
 
 func _on_player_got_home(home: Area2D) -> void:
 	add_to_score(50)
+	AudioManager.play("home")
 	home.set_occupied()
 		
