@@ -12,10 +12,22 @@ extends Node2D
 @onready var three_logs_set : Node = $Level/ThreeLogsSet
 @onready var five_logs_set : Node = $Level/FiveLogsSet
 @onready var seven_logs_set : Node = $Level/SevenLogsSet
+@onready var homes_set : Node = $Homes
+@onready var pause_overlay : Node = $PauseOverlay
+@onready var level : int = 1
+@onready var snake : Node = $Snake
+@onready var pink_frog : PinkFrog = $PinkFrog
+@onready var log_has_snake : bool = false
+@onready var log_has_pink_frog : bool = false
 
+@onready var add_snake_to_log : bool = false
+@onready var add_pink_frog_to_log : bool = false
 
 const white_car_scene : PackedScene = preload("res://entities/vehicles/WhiteCar.tscn")
+const death_particles_scene : PackedScene = preload("res://entities/death_particles/DeathParticles.tscn")
 @onready var score_label : Label = $Level/ScoreLabel
+@onready var level_label : Label = $Level/LevelLabel
+
 @onready var tick_counter : int = 0
 
 const PLAYER_STARTING_POSITION : Vector2 = Vector2(370, 530)
@@ -24,14 +36,47 @@ const PLAYER_STARTING_POSITION : Vector2 = Vector2(370, 530)
 @onready var score : int = 0
 @onready var pool_ids : Dictionary[int, ObjectPool]
 
+@onready var occupied_homes : int = 0
+
 func _ready() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	player.connect("player_death", _on_player_death)
+	StateManager.start_position = PLAYER_STARTING_POSITION
 	AudioManager.register("soundtrack", load("res://assets/audio/music/8-bit-air-fight-158813.mp3"), -5, true)
 	AudioManager.register("home", load("res://assets/audio/sfx/home.mp3"))
-	StateManager.start_position = PLAYER_STARTING_POSITION
+	AudioManager.register("success", load("res://assets/audio/sfx/success.wav"))
 	AudioManager.play("soundtrack")
 	add_to_score(0)
+	level_label.text = "%d" % level
+	reset_snake()
+
+func pause_game() -> void:
+	get_tree().paused = true
+	pause_overlay.pause()
+	
+
+func shutdown() -> void:
+	AudioManager.stop("soundtrack") 
+
+func reset_pink_frog() -> void:
+	pink_frog.position = Vector2(-100, -100)
+	pink_frog.speed = 0
+	log_has_pink_frog = false
+
+func reset_snake() -> void:
+	log_has_snake = false
+	snake.position = Vector2(-100,-100)
+	snake.speed = 0
+	snake.platform_speed = 0
+	snake.z_index = 100
+	snake.log_node=null
+	
 
 func _process(_delta:float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		pause_game()
+		return
+	
 	for red_cars_node : Node2D in red_car_set.get_children():
 	#	print(red_cars_node.get_class())
 		if red_cars_node.position.x < -red_cars_node.width():
@@ -70,9 +115,21 @@ func _process(_delta:float) -> void:
 		if five_log_node.position.x > 800 + (five_log_node.width() - 800):
 			five_log_node.position.x = -five_log_node.width()
 			
+			if pink_frog.log_node && pink_frog.log_node == five_log_node:
+				reset_pink_frog()
+			if add_pink_frog_to_log && ! log_has_pink_frog:
+				spawn_pink_frog_on_log(five_log_node)
+			
 	for seven_logs_node : Node2D in seven_logs_set.get_children():
 		if seven_logs_node.position.x > 800 + (seven_logs_node.width() - 800):
 			seven_logs_node.position.x = -seven_logs_node.width()
+			
+			if snake.log_node && snake.log_node == seven_logs_node:
+				reset_snake()
+				
+			if add_snake_to_log && ! log_has_snake:
+				spawn_snake_on_log(seven_logs_node)
+
 
 func add_to_score(point_change: int) -> void:
 	score += point_change
@@ -81,9 +138,68 @@ func add_to_score(point_change: int) -> void:
 func _on_player_jump_foward() -> void:
 	add_to_score(10)
 
+func _on_player_death(player_position : Vector2) -> void:
+	var death_particles : GPUParticles2D = death_particles_scene.instantiate()
+	death_particles.position = Vector2(player_position)
+	death_particles.one_shot = true
+	death_particles.z_index = 10
+	death_particles.connect("finished", func() -> void: death_particles.queue_free() )
+	add_child(death_particles)
+	
+func spawn_pink_frog_on_log(log_node: Node2D) -> void:
+	log_has_pink_frog = true
+	pink_frog.scale.x = 1;
+	pink_frog.position = Vector2(log_node.position)
+	pink_frog.position.x += 25
+	pink_frog.position.y += 15
+	pink_frog.speed = log_node.speed
+	pink_frog.log_node=log_node
+	pink_frog.z_index = 1
+
+func spawn_snake_on_hedge() -> void:
+	snake.speed = 55
+	snake.position = Vector2(-52, 336)
+
+func spawn_snake_on_log(log_node: Node) -> void:
+	log_has_snake = true
+	snake.scale.x = 1;
+	snake.position = Vector2(log_node.position)
+	snake.position.x += 25
+	snake.position.y += 15
+	snake.speed = 55
+	snake.platform_speed = log_node.speed
+	snake.log_node=log_node
+
+func spawn_snake() -> void:
+	if level % 2 ==  0:
+		add_snake_to_log = false
+		reset_snake()
+		spawn_snake_on_hedge()
+	else:
+		add_snake_to_log = true
+
 
 func _on_player_got_home(home: Area2D) -> void:
 	add_to_score(50)
-	AudioManager.play("home")
-	home.set_occupied()
+	if player.pink_frog.visible:
+		add_to_score(200)
+	occupied_homes += 1
+	if occupied_homes == 6:
+		for home_node : Node in homes_set.get_children():
+			home_node.reset()
+		add_pink_frog_to_log = true
+		occupied_homes = 0
+		add_to_score(1000)
+		level += 1
+		level_label.text = "%d" % level 
+		AudioManager.play("success")
+		spawn_snake()
+		add_pink_frog_to_log = true
+	else:
+		AudioManager.play("home")
+		home.set_occupied()
 		
+
+func _on_player_got_pink_frog() -> void:
+	add_pink_frog_to_log = false
+	reset_pink_frog()

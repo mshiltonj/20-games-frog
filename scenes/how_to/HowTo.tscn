@@ -1,0 +1,161 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc4r0e2kq82ob"]
+
+[ext_resource type="Script" uid="uid://dy8f4un8lcwqq" path="res://scenes/how_to/how_to.gd" id="1_1tgl3"]
+[ext_resource type="FontFile" uid="uid://bnwxsyvjp025u" path="res://assets/fonts/press-start.k.ttf" id="2_vteru"]
+[ext_resource type="FontFile" uid="uid://qujkoumo4ukj" path="res://assets/fonts/betsy-flanagan.regular.otf" id="3_81brg"]
+
+[node name="HowTo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1tgl3")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 801.0
+offset_bottom = 579.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+theme_override_font_sizes/font_size = 28
+text = "How To Play"
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+theme_override_font_sizes/font_size = 22
+text = "Movement"
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_81brg")
+theme_override_font_sizes/font_size = 36
+text = "A"
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+theme_override_font_sizes/font_size = 14
+text = "Jump left"
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_81brg")
+theme_override_font_sizes/font_size = 36
+text = "W"
+
+[node name="Label4" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+theme_override_font_sizes/font_size = 14
+text = "Jump Up"
+
+[node name="Label5" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_81brg")
+theme_override_font_sizes/font_size = 36
+text = "S"
+
+[node name="Label6" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+theme_override_font_sizes/font_size = 14
+text = "Jump Down"
+
+[node name="Label7" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_81brg")
+theme_override_font_sizes/font_size = 36
+text = "D"
+
+[node name="Label8" type="Label" parent="CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+theme_override_font_sizes/font_size = 14
+text = "Jump Right
+"
+
+[node name="Scores" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+theme_override_font_sizes/font_size = 21
+text = "Point Table"
+
+[node name="GridContainer2" type="GridContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 13
+theme_override_constants/v_separation = 14
+columns = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+text = "10"
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+text = "Every step forward"
+
+[node name="Label10" type="Label" parent="CenterContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+text = "50"
+
+[node name="Label4" type="Label" parent="CenterContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+text = "Get a frog home"
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+text = "200	"
+
+[node name="Label9" type="Label" parent="CenterContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+text = "Get a pink frog home"
+
+[node name="Label5" type="Label" parent="CenterContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+text = "1000"
+
+[node name="Label6" type="Label" parent="CenterContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+text = "Fill all frog homes"
+
+[node name="Label7" type="Label" parent="CenterContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+text = "10"
+
+[node name="Label8" type="Label" parent="CenterContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+text = "Every second remaing after
+filling frog homes"
+
+[node name="MainMenu" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_vteru")
+text = "Back To Main Menu"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MainMenu" to="." method="_on_back_to_main_menu_pressed"]

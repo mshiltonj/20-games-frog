@@ -19,15 +19,26 @@ Death SFX:
 Home SFX:
 	8-Bit Game 1 -- floraphonic
 	https://pixabay.com/sound-effects/8-bit-game-1-186975/
+	
+Complete Level:
+	LevelUp -- Kenneth_Cooney
+	https://freesound.org/people/Kenneth_Cooney/sounds/609335/
+
 """
 
 var font_credits : String = """
+Title:
 	Best Time - Khurasan
 	https://www.dafont.com/bestime.font
 
 Game Text:
 	Press Start K - codeman38
 	https://www.1001fonts.com/press-start-font.html
+	
+How to Play:
+	Betsy Flanagan Regular - 
+	https://www.1001fonts.com/betsy-flanagan-font.html
+
 """
 func _ready() -> void:
 	credits_text_label.text = sound_credits + "\n" + font_credits

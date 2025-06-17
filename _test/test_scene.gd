@@ -7,7 +7,7 @@ extends Node2D
 @onready var draw_color : Color = Color.RED
 
 func _ready() -> void:
-	base_vehicle.speed = 0
+	pass
 
 func _draw() -> void:
 	if rect:

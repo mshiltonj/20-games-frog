@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://3ta4ytb20s46"]
+[gd_scene load_steps=32 format=4 uid="uid://3ta4ytb20s46"]
 
 [ext_resource type="Script" uid="uid://drnxklojq2psn" path="res://scenes/game/game.gd" id="1_m44fu"]
 [ext_resource type="Texture2D" uid="uid://dagrh2fldsiia" path="res://assets/sprite-sheets/sprites.png" id="2_7qcb4"]
@@ -15,6 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://bv3fji6rpqwrt" path="res://entities/three_logs/three_logs.tscn" id="10_gynul"]
 [ext_resource type="PackedScene" uid="uid://0wdm53huvcwa" path="res://entities/five_logs/five_logs.tscn" id="11_60iot"]
 [ext_resource type="PackedScene" uid="uid://bediytdgmiy64" path="res://entities/seven_logs/seven_logs.tscn" id="12_5xhyk"]
+[ext_resource type="PackedScene" uid="uid://rumruwnoklbw" path="res://scenes/pause/Pause.tscn" id="16_vg8p7"]
+[ext_resource type="PackedScene" uid="uid://gd6ttsdjqptt" path="res://entities/snake/Snake.tscn" id="17_2kuj7"]
+[ext_resource type="PackedScene" uid="uid://bi485hqmtvaoa" path="res://entities/pink_frog/PinkFrog.tscn" id="18_vj8ay"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lyhax"]
 texture = ExtResource("2_7qcb4")
@@ -156,7 +159,7 @@ size = Vector2(43, 64)
 [node name="Game" type="Node2D"]
 script = ExtResource("1_m44fu")
 metadata/_edit_vertical_guides_ = [801.0, 899.0]
-metadata/_edit_horizontal_guides_ = [602.0, 469.0, 178.0, 208.0, 240.0, 274.0, 305.0, 336.0, 369.0, 403.0, 434.0, 498.0, 530.0]
+metadata/_edit_horizontal_guides_ = [602.0, 469.0, 178.0, 208.0, 240.0, 274.0, 305.0, 336.0, 369.0, 403.0, 434.0, 498.0, 530.0, 36.0]
 
 [node name="Level" type="Node2D" parent="."]
 
@@ -166,14 +169,40 @@ tile_map_data = PackedByteArray("AAAAACQAAAAAAAEAAAABACQAAAAAAAEAAAACACQAAAAAAAE
 tile_set = SubResource("TileSet_365ku")
 
 [node name="ScoreLabel" type="Label" parent="Level"]
-offset_left = 90.0
-offset_top = 16.0
-offset_right = 148.0
-offset_bottom = 39.0
+offset_left = 14.0
+offset_top = 41.0
+offset_right = 72.0
+offset_bottom = 64.0
 theme_override_fonts/font = ExtResource("3_2iokk")
 text = "SCORE	"
 
-[node name="RedCarsSet" type="Node" parent="Level"]
+[node name="ScoreLabel2" type="Label" parent="Level"]
+offset_left = 13.0
+offset_top = 17.0
+offset_right = 71.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("3_2iokk")
+text = "SCORE	"
+
+[node name="LevelLabel" type="Label" parent="Level"]
+offset_left = 673.0
+offset_top = 38.0
+offset_right = 773.0
+offset_bottom = 61.0
+theme_override_fonts/font = ExtResource("3_2iokk")
+text = "Level"
+horizontal_alignment = 2
+
+[node name="LevelLabel2" type="Label" parent="Level"]
+offset_left = 692.0
+offset_top = 15.0
+offset_right = 750.0
+offset_bottom = 38.0
+theme_override_fonts/font = ExtResource("3_2iokk")
+text = "Level"
+horizontal_alignment = 2
+
+[node name="RedCarsSet" type="Node2D" parent="Level"]
 
 [node name="RedCars" parent="Level/RedCarsSet" instance=ExtResource("3_lyhax")]
 position = Vector2(1, 487)
@@ -181,7 +210,7 @@ position = Vector2(1, 487)
 [node name="RedCars2" parent="Level/RedCarsSet" instance=ExtResource("3_lyhax")]
 position = Vector2(-784, 487)
 
-[node name="BulldozerSet" type="Node" parent="Level"]
+[node name="BulldozerSet" type="Node2D" parent="Level"]
 
 [node name="Bulldozer" parent="Level/BulldozerSet" instance=ExtResource("4_365ku")]
 position = Vector2(1, 455)
@@ -189,7 +218,7 @@ position = Vector2(1, 455)
 [node name="Bulldozer2" parent="Level/BulldozerSet" instance=ExtResource("4_365ku")]
 position = Vector2(756, 455)
 
-[node name="WhiteCarSet" type="Node" parent="Level"]
+[node name="WhiteCarSet" type="Node2D" parent="Level"]
 
 [node name="BaseVehicle" parent="Level/WhiteCarSet" instance=ExtResource("6_qf6a8")]
 position = Vector2(0, 418)
@@ -197,7 +226,7 @@ position = Vector2(0, 418)
 [node name="BaseVehicle2" parent="Level/WhiteCarSet" instance=ExtResource("6_qf6a8")]
 position = Vector2(785, 418)
 
-[node name="YellowCarSet" type="Node" parent="Level"]
+[node name="YellowCarSet" type="Node2D" parent="Level"]
 
 [node name="YellowCar" parent="Level/YellowCarSet" instance=ExtResource("4_gg4pt")]
 position = Vector2(11, 390)
@@ -205,7 +234,7 @@ position = Vector2(11, 390)
 [node name="YellowCar2" parent="Level/YellowCarSet" instance=ExtResource("4_gg4pt")]
 position = Vector2(-766, 388)
 
-[node name="WhiteTruckSet" type="Node" parent="Level"]
+[node name="WhiteTruckSet" type="Node2D" parent="Level"]
 
 [node name="BaseVehicle" parent="Level/WhiteTruckSet" instance=ExtResource("6_wnrko")]
 position = Vector2(-1, 353)
@@ -213,7 +242,7 @@ position = Vector2(-1, 353)
 [node name="BaseVehicle2" parent="Level/WhiteTruckSet" instance=ExtResource("6_wnrko")]
 position = Vector2(778, 353)
 
-[node name="3TurtleSet" type="Node" parent="Level"]
+[node name="3TurtleSet" type="Node2D" parent="Level"]
 
 [node name="ThreeFrogs" parent="Level/3TurtleSet" instance=ExtResource("8_56wml")]
 position = Vector2(0, 290)
@@ -221,7 +250,7 @@ position = Vector2(0, 290)
 [node name="ThreeFrogs2" parent="Level/3TurtleSet" instance=ExtResource("8_56wml")]
 position = Vector2(857, 290)
 
-[node name="TwoFrogsSet" type="Node" parent="Level"]
+[node name="TwoFrogsSet" type="Node2D" parent="Level"]
 
 [node name="TwoFrogs" parent="Level/TwoFrogsSet" instance=ExtResource("9_aptqa")]
 position = Vector2(-1, 195)
@@ -229,7 +258,7 @@ position = Vector2(-1, 195)
 [node name="TwoFrogs2" parent="Level/TwoFrogsSet" instance=ExtResource("9_aptqa")]
 position = Vector2(853, 195)
 
-[node name="ThreeLogsSet" type="Node" parent="Level"]
+[node name="ThreeLogsSet" type="Node2D" parent="Level"]
 
 [node name="ThreeLogs" parent="Level/ThreeLogsSet" instance=ExtResource("10_gynul")]
 position = Vector2(-4, 256)
@@ -237,7 +266,7 @@ position = Vector2(-4, 256)
 [node name="ThreeLogs2" parent="Level/ThreeLogsSet" instance=ExtResource("10_gynul")]
 position = Vector2(838, 256)
 
-[node name="FiveLogsSet" type="Node" parent="Level"]
+[node name="FiveLogsSet" type="Node2D" parent="Level"]
 
 [node name="FiveLogs" parent="Level/FiveLogsSet" instance=ExtResource("11_60iot")]
 position = Vector2(-4, 223)
@@ -245,7 +274,7 @@ position = Vector2(-4, 223)
 [node name="FiveLogs2" parent="Level/FiveLogsSet" instance=ExtResource("11_60iot")]
 position = Vector2(-1134, 223)
 
-[node name="SevenLogsSet" type="Node" parent="Level"]
+[node name="SevenLogsSet" type="Node2D" parent="Level"]
 
 [node name="SevenLogs" parent="Level/SevenLogsSet" instance=ExtResource("12_5xhyk")]
 position = Vector2(1108, 160)
@@ -260,7 +289,7 @@ position = Vector2(370, 530)
 
 [node name="Hazards" type="Node" parent="."]
 
-[node name="Walls" type="Node" parent="."]
+[node name="Walls" type="Node2D" parent="."]
 
 [node name="Top" type="StaticBody2D" parent="Walls"]
 position = Vector2(0, -92)
@@ -360,27 +389,42 @@ collision_mask = 0
 position = Vector2(14, 22)
 shape = SubResource("RectangleShape2D_2iokk")
 
-[node name="Home" parent="." instance=ExtResource("5_lyhax")]
-position = Vector2(64, 129)
-
-[node name="Home2" parent="." instance=ExtResource("5_lyhax")]
-position = Vector2(193, 129)
-
-[node name="Home3" parent="." instance=ExtResource("5_lyhax")]
-position = Vector2(320, 128)
-
-[node name="Home4" parent="." instance=ExtResource("5_lyhax")]
-position = Vector2(481, 129)
-
-[node name="Home5" parent="." instance=ExtResource("5_lyhax")]
-position = Vector2(609, 129)
-
-[node name="Home6" parent="." instance=ExtResource("5_lyhax")]
-position = Vector2(735, 128)
-
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
 
+[node name="Homes" type="Node2D" parent="."]
+
+[node name="Home" parent="Homes" instance=ExtResource("5_lyhax")]
+position = Vector2(64, 129)
+
+[node name="Home2" parent="Homes" instance=ExtResource("5_lyhax")]
+position = Vector2(193, 129)
+
+[node name="Home3" parent="Homes" instance=ExtResource("5_lyhax")]
+position = Vector2(320, 128)
+
+[node name="Home4" parent="Homes" instance=ExtResource("5_lyhax")]
+position = Vector2(481, 129)
+
+[node name="Home5" parent="Homes" instance=ExtResource("5_lyhax")]
+position = Vector2(609, 129)
+
+[node name="Home6" parent="Homes" instance=ExtResource("5_lyhax")]
+position = Vector2(735, 128)
+
+[node name="PauseOverlay" parent="." node_paths=PackedStringArray("game_scene") instance=ExtResource("16_vg8p7")]
+visible = false
+z_index = 1000
+game_scene = NodePath("..")
+
+[node name="Snake" parent="." instance=ExtResource("17_2kuj7")]
+z_index = 1
+position = Vector2(-100, -100)
+
+[node name="PinkFrog" parent="." instance=ExtResource("18_vj8ay")]
+position = Vector2(-100, -100)
+
 [connection signal="got_home" from="Player" to="." method="_on_player_got_home"]
+[connection signal="got_pink_frog" from="Player" to="." method="_on_player_got_pink_frog"]
 [connection signal="jump_foward" from="Player" to="." method="_on_player_jump_foward"]

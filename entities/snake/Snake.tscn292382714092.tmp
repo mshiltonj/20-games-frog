@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://gd6ttsdjqptt"]
+
+[ext_resource type="Texture2D" uid="uid://516qmguda5fd" path="res://entities/snake/snake-Sheet.png" id="1_j2jp3"]
+[ext_resource type="Script" uid="uid://ig1sqd0yhio5" path="res://entities/snake/snake.gd" id="1_pe182"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pe182"]
+size = Vector2(57, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2jp3"]
+atlas = ExtResource("1_j2jp3")
+region = Rect2(0, 0, 63, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pe182"]
+atlas = ExtResource("1_j2jp3")
+region = Rect2(63, 0, 63, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dr1tx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2jp3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pe182")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="Snake" type="Area2D" groups=["splash"]]
+collision_layer = 2
+script = ExtResource("1_pe182")
+speed = null
+platform_speed = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 2)
+shape = SubResource("RectangleShape2D_pe182")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_dr1tx")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(21, 0)
+target_position = Vector2(25, 0)
+collision_mask = 2
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

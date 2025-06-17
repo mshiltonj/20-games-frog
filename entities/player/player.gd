@@ -5,6 +5,8 @@ enum Facing { UP, DOWN, LEFT, RIGHT }
 
 signal jump_foward
 signal got_home
+signal player_death 
+signal got_pink_frog
 @onready var move_detector_collision_shape : CollisionShape2D = $MoveDetector/CollisionShape2D
 
 
@@ -22,10 +24,13 @@ signal got_home
 @onready var platform_speed : int = 0
 
 @onready var frame_counter : int = 0
+@onready var pink_frog : Sprite2D = $PingFrog
 
 func _ready() -> void:
 	AudioManager.register("jump", load("res://assets/audio/sfx/jump.mp3"), 5)
 	AudioManager.register("death", load("res://assets/audio/sfx/death.mp3"), 5)
+	AudioManager.register("pink_frog", load("res://assets/audio/sfx/pink_frog.wav"), 5)
+	pink_frog.visible = false
 
 func _input(event : InputEvent) -> void:
 
@@ -77,7 +82,7 @@ func is_current_position_intersecting_hazards() -> bool:
 	intersect_params.transform = move_detector_collision_shape.global_transform
 	
 	intersect_params.collide_with_areas = true
-	intersect_params.collision_mask = 10000010
+	intersect_params.collision_mask = 10000110
 	
 	var space_state : PhysicsDirectSpaceState2D = get_world_2d().direct_space_state
 	var results : Array = space_state.intersect_shape(intersect_params)
@@ -88,21 +93,28 @@ func is_current_position_intersecting_hazards() -> bool:
 			if dict.collider.is_in_group("platform"):
 				#print("on platform")
 				platform_speed = dict.collider.get_parent().speed
-				print("landed on platform: ", platform_speed)
+				#print("landed on platform: ", platform_speed)
 			elif dict.collider.is_in_group("vehicles") || dict.collider.is_in_group("splash") :				
 				on_hazard = true
+			
+			if dict.collider.is_in_group("pink_frog"):
+				collect_pink_frog()
 	return on_hazard
+
+func rotate_sprites(degrees : int) -> void:
+	sprite.rotation = deg_to_rad(degrees)
+	pink_frog.rotation = deg_to_rad(degrees)
 
 func face_direction() -> void:
 	match facing:
 		Facing.UP:
-			sprite.rotation = deg_to_rad(0)
+			rotate_sprites(0)
 		Facing.DOWN:
-			sprite.rotation = deg_to_rad(180)
+			rotate_sprites(180)
 		Facing.RIGHT:
-			sprite.rotation = deg_to_rad(90)
+			rotate_sprites(90)
 		Facing.LEFT:
-			sprite.rotation = deg_to_rad(-90)
+			rotate_sprites(-90)
 
 func move_player(delta : float) -> void:
 	frame_counter += 1
@@ -146,10 +158,12 @@ func _process(delta: float) -> void:
 
 
 func death() -> void:
+	emit_signal("player_death", global_position)
 	AudioManager.play('death')
 	reset()
 
 func reset() -> void:
+	release_ping_frog()
 	jumping = false
 	target_speed = 0
 	sprite.set_frame(0)
@@ -164,11 +178,22 @@ func _on_area_2d_area_entered(area :Area2D) -> void:
 			death()
 	elif area.is_in_group("platform"):
 		pass
-		#player.
+	elif area.is_in_group("pink_frog"):
+		collect_pink_frog()
+
 	else:
 		emit_signal("got_home", area)
 		reset()
 
+func collect_pink_frog() -> void:
+	pink_frog.visible=true
+	AudioManager.play("pink_frog")
+
+	face_direction()
+	emit_signal("got_pink_frog")
+	
+func release_ping_frog() -> void:
+	pink_frog.visible = false
 
 func _on_move_detector_area_entered(area : Area2D) -> void:
 	pass

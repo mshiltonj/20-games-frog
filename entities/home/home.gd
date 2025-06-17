@@ -13,6 +13,7 @@ func set_occupied() -> void:
 	set_collision_layer_value(2, false)
 	home_in_use.set_collision_layer_value(2, true)
 	occupied_sprite.visible = true
+	
 
 func reset() -> void:
 	occupied_sprite.visible = false

@@ -10,7 +10,8 @@ extends Node
 var registered_audio_streams : Dictionary[String, AudioStreamPlayer2D] = {}
 
 func register(key_name:String, audio:AudioStream, volume: float = 0.0, looping: bool = false ) -> void:
-	#audio.has_lo
+	if looping:
+		audio.loop = looping
 	var player : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
 	player.stream = audio
 	player.volume_db = volume
@@ -28,7 +29,7 @@ func stop(key_name: String) -> void:
 
 # TODO: Check if stream exists
 func play(key_name: String) -> void:
-	print("volume for track: ", registered_audio_streams[key_name].volume_db)
+	#print("volume for track: ", registered_audio_streams[key_name].volume_db)
 	registered_audio_streams[key_name].play()
 	
 # TODO: Check if stream exists

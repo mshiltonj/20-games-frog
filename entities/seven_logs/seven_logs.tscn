@@ -56,6 +56,10 @@ collision_mask = 0
 position = Vector2(276, 14)
 shape = SubResource("RectangleShape2D_vadmv")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="KillingZone"]
+position = Vector2(-95, 16)
+shape = SubResource("RectangleShape2D_vadmv")
+
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="KillingZone"]
 position = Vector2(1013, 15)
 shape = SubResource("RectangleShape2D_vadmv")
