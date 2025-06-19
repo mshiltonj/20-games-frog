@@ -1,6 +1,10 @@
 class_name Main
 extends Control
+@onready var quit_button : Button = $CenterContainer/VBoxContainer/MarginContainer/VBoxContainer/Quit
 
+func _ready() -> void:
+	if OS.get_name() != 'Web':
+		quit_button.visible = true
 
 func _on_play_pressed() -> void:
 	SceneManager.load_scene("Game", self)

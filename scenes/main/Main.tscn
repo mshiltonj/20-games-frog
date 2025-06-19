@@ -1,23 +1,14 @@
 [gd_scene load_steps=11 format=3 uid="uid://cs3y1u30qsk55"]
 
+[ext_resource type="Theme" uid="uid://j1f6erskars" path="res://project_theme.tres" id="1_ostsq"]
 [ext_resource type="Script" uid="uid://bvg8cd3ec7i58" path="res://scenes/main/main.gd" id="1_u1xfj"]
+[ext_resource type="PackedScene" uid="uid://dua5cpqq4eqpw" path="res://scenes/RadialTextureRect.tscn" id="2_ko0rf"]
 [ext_resource type="FontFile" uid="uid://7xfpqkqa6i7t" path="res://assets/fonts/Bestime.ttf" id="2_nha0i"]
 [ext_resource type="Texture2D" uid="uid://dgei0w63tdrf6" path="res://entities/three_frogs/three-frogs.png" id="3_1rhdn"]
 [ext_resource type="FontFile" uid="uid://bnwxsyvjp025u" path="res://assets/fonts/press-start.k.ttf" id="3_sjxhf"]
 [ext_resource type="Texture2D" uid="uid://dys3bfe50eu2c" path="res://entities/player/frog-Sheet.png" id="4_sjxhf"]
 [ext_resource type="Texture2D" uid="uid://531s01y1qapa" path="res://entities/home/home.png" id="5_ko0rf"]
 [ext_resource type="Texture2D" uid="uid://cuow3hm72nmw0" path="res://entities/five_logs/five-log.png" id="6_ostsq"]
-
-[sub_resource type="Gradient" id="Gradient_q24mn"]
-offsets = PackedFloat32Array(0.146245, 0.766798, 1)
-colors = PackedColorArray(0.113725, 0.168627, 0.32549, 1, 0.134331, 0.391855, 0.620838, 1, 0.160784, 0.678431, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_gyg6b"]
-gradient = SubResource("Gradient_q24mn")
-width = 800
-height = 600
-fill = 1
-fill_from = Vector2(0.5, 0.542735)
 
 [sub_resource type="LabelSettings" id="LabelSettings_nha0i"]
 font = ExtResource("2_nha0i")
@@ -35,13 +26,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_ostsq")
 script = ExtResource("1_u1xfj")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="RadialTextureRect" parent="." instance=ExtResource("2_ko0rf")]
 layout_mode = 0
-offset_right = 802.0
-offset_bottom = 600.0
-texture = SubResource("GradientTexture2D_gyg6b")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -85,6 +74,7 @@ theme_override_fonts/font = ExtResource("3_sjxhf")
 text = "How To Play"
 
 [node name="Options" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_sjxhf")
 text = "Options"
@@ -95,16 +85,10 @@ theme_override_fonts/font = ExtResource("3_sjxhf")
 text = "Credits"
 
 [node name="Quit" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_sjxhf")
 text = "Quit"
-
-[node name="ThreeFrogs" type="Sprite2D" parent="CenterContainer/VBoxContainer"]
-texture_filter = 1
-position = Vector2(542, 116)
-scale = Vector2(4.08, 4.08)
-texture = ExtResource("3_1rhdn")
-hframes = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -112,6 +96,13 @@ position = Vector2(137, 131)
 scale = Vector2(4.32, 4.32)
 texture = ExtResource("4_sjxhf")
 hframes = 2
+
+[node name="ThreeFrogs" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(805, 228)
+scale = Vector2(4.08, 4.08)
+texture = ExtResource("3_1rhdn")
+hframes = 3
 
 [node name="Home" type="Sprite2D" parent="."]
 texture_filter = 1

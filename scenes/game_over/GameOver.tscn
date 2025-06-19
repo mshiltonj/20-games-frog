@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxqws7yredq2x"]
+
+[ext_resource type="FontFile" uid="uid://7xfpqkqa6i7t" path="res://assets/fonts/Bestime.ttf" id="1_alkiy"]
+[ext_resource type="Theme" uid="uid://j1f6erskars" path="res://project_theme.tres" id="1_b1at3"]
+[ext_resource type="Script" uid="uid://cqmn4we20q46q" path="res://scenes/game_over/game_over.gd" id="1_hybh5"]
+[ext_resource type="PackedScene" uid="uid://bdduhtqrl58gp" path="res://scenes/patch_rect/PatchRect.tscn" id="2_b1at3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_geo0e"]
+font_size = 48
+font_color = Color(0, 0.894118, 0.211765, 1)
+stacked_shadow_count = 2
+stacked_shadow_0/offset = Vector2(-1, -2)
+stacked_shadow_0/color = Color(1, 1, 1, 1)
+stacked_shadow_1/offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hybh5"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b1at3"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+
+[node name="GameOver" type="Control"]
+process_mode = 3
+z_index = 1000
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_b1at3")
+script = ExtResource("1_hybh5")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_right = 802.0
+offset_bottom = 600.0
+
+[node name="PatchRect" parent="CenterContainer" instance=ExtResource("2_b1at3")]
+custom_minimum_size = Vector2(550, 350)
+layout_mode = 2
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="GameOverTitle" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.894118, 0.211765, 1)
+theme_override_fonts/font = ExtResource("1_alkiy")
+text = "Game Over!"
+label_settings = SubResource("LabelSettings_geo0e")
+
+[node name="FinalScoreLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hybh5")
+text = "Final Score: 0"
+horizontal_alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxEmpty_b1at3")
+text = "New High Score!"
+horizontal_alignment = 1
+
+[node name="PlayAgainButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play Again"
+
+[node name="MainMenuButton" type="Button" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = " Main Menu"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PlayAgainButton" to="." method="_on_play_again_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://djabf2cb2ouy5"]
+[gd_scene load_steps=10 format=3 uid="uid://djabf2cb2ouy5"]
 
 [ext_resource type="Script" uid="uid://domtxx0866cey" path="res://_test/test_scene.gd" id="1_tqyy3"]
 [ext_resource type="PackedScene" uid="uid://dxrrmewctnbpj" path="res://entities/death_particles/DeathParticles.tscn" id="2_tqyy3"]
@@ -6,9 +6,28 @@
 [ext_resource type="PackedScene" uid="uid://bediytdgmiy64" path="res://entities/seven_logs/seven_logs.tscn" id="3_wrqc5"]
 [ext_resource type="PackedScene" uid="uid://bi485hqmtvaoa" path="res://entities/pink_frog/PinkFrog.tscn" id="5_jgbaa"]
 [ext_resource type="PackedScene" uid="uid://4cgcsq56mu10" path="res://entities/player/Player.tscn" id="6_vfrpv"]
+[ext_resource type="PackedScene" uid="uid://bdduhtqrl58gp" path="res://scenes/patch_rect/PatchRect.tscn" id="7_vfrpv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jgbaa"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.1, 0.1, 0.1, 0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vfrpv"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(1, 0.08, 0.08, 1)
 
 [node name="TestScene" type="Node2D"]
-scale = Vector2(3, 3)
 script = ExtResource("1_tqyy3")
 
 [node name="Button" type="Button" parent="."]
@@ -36,4 +55,27 @@ position = Vector2(75, 143.333)
 [node name="Player" parent="." instance=ExtResource("6_vfrpv")]
 position = Vector2(122, 143.333)
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 167.0
+offset_top = 473.0
+offset_right = 623.0
+offset_bottom = 500.0
+theme_override_styles/background = SubResource("StyleBoxFlat_jgbaa")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vfrpv")
+step = 10.0
+
+[node name="HSlider" type="HSlider" parent="."]
+offset_left = 259.0
+offset_top = 401.0
+offset_right = 510.0
+offset_bottom = 417.0
+value = 75.0
+
+[node name="PatchRect" parent="." instance=ExtResource("7_vfrpv")]
+offset_left = 163.0
+offset_top = 246.0
+offset_right = 531.0
+offset_bottom = 546.0
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

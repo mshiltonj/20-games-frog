@@ -7,6 +7,8 @@ signal jump_foward
 signal got_home
 signal player_death 
 signal got_pink_frog
+signal spawn
+
 @onready var move_detector_collision_shape : CollisionShape2D = $MoveDetector/CollisionShape2D
 
 
@@ -25,6 +27,8 @@ signal got_pink_frog
 
 @onready var frame_counter : int = 0
 @onready var pink_frog : Sprite2D = $PingFrog
+@onready var handle_input : bool = true
+@onready var is_dead : bool = false
 
 func _ready() -> void:
 	AudioManager.register("jump", load("res://assets/audio/sfx/jump.mp3"), 5)
@@ -33,6 +37,8 @@ func _ready() -> void:
 	pink_frog.visible = false
 
 func _input(event : InputEvent) -> void:
+	if ! handle_input:
+		return
 
 	if jumping:
 		return 
@@ -144,7 +150,7 @@ func move_player(delta : float) -> void:
 		position = target_position
 	
 	if (position - target_position).is_zero_approx():
-		if is_current_position_intersecting_hazards():
+		if is_current_position_intersecting_hazards() && ! is_dead:
 			death()
 		else:
 			jumping = false
@@ -158,11 +164,17 @@ func _process(delta: float) -> void:
 
 
 func death() -> void:
+	is_dead = true
 	emit_signal("player_death", global_position)
 	AudioManager.play('death')
-	reset()
+	self.handle_input = false
+	self.visible = false	
 
-func reset() -> void:
+	
+
+func reset() -> void:	
+	handle_input = true
+	visible = true
 	release_ping_frog()
 	jumping = false
 	target_speed = 0
@@ -171,8 +183,13 @@ func reset() -> void:
 	position = Vector2(StateManager.start_position)
 	target_position = position
 	platform_speed = 0
+	is_dead = false
+	emit_signal("spawn")
 
 func _on_area_2d_area_entered(area :Area2D) -> void:
+	if is_dead:
+		return
+	
 	if area.is_in_group("vehicles") || area.is_in_group("splash") :
 		if ! jumping:
 			death()
@@ -180,7 +197,6 @@ func _on_area_2d_area_entered(area :Area2D) -> void:
 		pass
 	elif area.is_in_group("pink_frog"):
 		collect_pink_frog()
-
 	else:
 		emit_signal("got_home", area)
 		reset()

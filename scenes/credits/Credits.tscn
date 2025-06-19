@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwq2umh4kemeu"]
+[gd_scene load_steps=6 format=3 uid="uid://dwq2umh4kemeu"]
 
 [ext_resource type="Script" uid="uid://c8uyuhu01v1vu" path="res://scenes/credits/credits.gd" id="1_677rg"]
+[ext_resource type="Theme" uid="uid://j1f6erskars" path="res://project_theme.tres" id="1_kb4v8"]
 [ext_resource type="FontFile" uid="uid://bnwxsyvjp025u" path="res://assets/fonts/press-start.k.ttf" id="2_8vc4u"]
+[ext_resource type="PackedScene" uid="uid://dua5cpqq4eqpw" path="res://scenes/RadialTextureRect.tscn" id="2_ymb2p"]
+[ext_resource type="PackedScene" uid="uid://bdduhtqrl58gp" path="res://scenes/patch_rect/PatchRect.tscn" id="3_kb4v8"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -12,12 +15,22 @@ offset_top = 39.0
 offset_bottom = -31.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_kb4v8")
 script = ExtResource("1_677rg")
+
+[node name="RadialTextureRect" parent="." instance=ExtResource("2_ymb2p")]
+layout_mode = 0
+offset_top = -37.0
+offset_bottom = 563.0
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
 offset_right = 801.0
 offset_bottom = 527.0
+
+[node name="PatchRect" parent="CenterContainer" instance=ExtResource("3_kb4v8")]
+custom_minimum_size = Vector2(650, 500)
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
@@ -37,7 +50,42 @@ layout_mode = 2
 [node name="CreditsText" type="Label" parent="CenterContainer/VBoxContainer/ScrollContainer"]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
-text = "loaded at runtime"
+text = "
+Background Music:
+	8-bit Air Fight -- moodmode
+	https://pixabay.com/music/video-games-8-bit-air-fight-158813/
+	
+Jump SFX:
+	gameboy pluck -- neezen
+	https://pixabay.com/sound-effects/gameboy-pluck-41265/
+
+Death SFX:
+	Explosion 9 -- u_b32baquv5u
+	https://pixabay.com/sound-effects/explosion-9-340460/
+	
+Home SFX:
+	8-Bit Game 1 -- floraphonic
+	https://pixabay.com/sound-effects/8-bit-game-1-186975/
+	
+Complete Level:
+	LevelUp -- Kenneth_Cooney
+	https://freesound.org/people/Kenneth_Cooney/sounds/609335/
+
+
+
+Title:
+	Best Time - Khurasan
+	https://www.dafont.com/bestime.font
+
+Game Text:
+	Press Start K - codeman38
+	https://www.1001fonts.com/press-start-font.html
+	
+How to Play:
+	Betsy Flanagan Regular - 
+	https://www.1001fonts.com/betsy-flanagan-font.html
+
+"
 autowrap_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]

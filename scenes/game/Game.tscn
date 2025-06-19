@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://3ta4ytb20s46"]
+[gd_scene load_steps=36 format=4 uid="uid://3ta4ytb20s46"]
 
 [ext_resource type="Script" uid="uid://drnxklojq2psn" path="res://scenes/game/game.gd" id="1_m44fu"]
 [ext_resource type="Texture2D" uid="uid://dagrh2fldsiia" path="res://assets/sprite-sheets/sprites.png" id="2_7qcb4"]
@@ -15,8 +15,10 @@
 [ext_resource type="PackedScene" uid="uid://bv3fji6rpqwrt" path="res://entities/three_logs/three_logs.tscn" id="10_gynul"]
 [ext_resource type="PackedScene" uid="uid://0wdm53huvcwa" path="res://entities/five_logs/five_logs.tscn" id="11_60iot"]
 [ext_resource type="PackedScene" uid="uid://bediytdgmiy64" path="res://entities/seven_logs/seven_logs.tscn" id="12_5xhyk"]
+[ext_resource type="Texture2D" uid="uid://17pagcwphjv3" path="res://scenes/game/life-marker.png" id="14_pbrru"]
 [ext_resource type="PackedScene" uid="uid://rumruwnoklbw" path="res://scenes/pause/Pause.tscn" id="16_vg8p7"]
 [ext_resource type="PackedScene" uid="uid://gd6ttsdjqptt" path="res://entities/snake/Snake.tscn" id="17_2kuj7"]
+[ext_resource type="PackedScene" uid="uid://cxqws7yredq2x" path="res://scenes/game_over/GameOver.tscn" id="17_07vrc"]
 [ext_resource type="PackedScene" uid="uid://bi485hqmtvaoa" path="res://entities/pink_frog/PinkFrog.tscn" id="18_vj8ay"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lyhax"]
@@ -123,6 +125,22 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_lyhax")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vj8ay"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 1, 0, 0)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_07vrc"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 1, 0, 1)
+corner_detail = 6
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lyhax"]
 size = Vector2(807, 86.5)
 
@@ -136,29 +154,29 @@ size = Vector2(807, 107)
 size = Vector2(123, 615)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qf6a8"]
-size = Vector2(30, 64)
+size = Vector2(22, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_56wml"]
-size = Vector2(60, 69)
+size = Vector2(39, 69)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aptqa"]
-size = Vector2(55, 59)
+size = Vector2(42, 59)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gynul"]
-size = Vector2(92, 59)
+size = Vector2(74, 59)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_60iot"]
-size = Vector2(60, 61)
+size = Vector2(44, 61)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xhyk"]
-size = Vector2(60, 58)
+size = Vector2(42, 58)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2iokk"]
-size = Vector2(43, 64)
+size = Vector2(33.5, 64)
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_m44fu")
-metadata/_edit_vertical_guides_ = [801.0, 899.0]
+metadata/_edit_vertical_guides_ = [801.0, 899.0, 404.0]
 metadata/_edit_horizontal_guides_ = [602.0, 469.0, 178.0, 208.0, 240.0, 274.0, 305.0, 336.0, 369.0, 403.0, 434.0, 498.0, 530.0, 36.0]
 
 [node name="Level" type="Node2D" parent="."]
@@ -190,7 +208,7 @@ offset_top = 38.0
 offset_right = 773.0
 offset_bottom = 61.0
 theme_override_fonts/font = ExtResource("3_2iokk")
-text = "Level"
+text = "LEVEL"
 horizontal_alignment = 2
 
 [node name="LevelLabel2" type="Label" parent="Level"]
@@ -199,8 +217,52 @@ offset_top = 15.0
 offset_right = 750.0
 offset_bottom = 38.0
 theme_override_fonts/font = ExtResource("3_2iokk")
-text = "Level"
+text = "LEVEL"
 horizontal_alignment = 2
+
+[node name="HiScoreLabelLabel" type="Label" parent="Level"]
+offset_left = 344.0
+offset_top = 16.0
+offset_right = 402.0
+offset_bottom = 39.0
+theme_override_fonts/font = ExtResource("3_2iokk")
+text = "HI SCORE"
+horizontal_alignment = 2
+
+[node name="HiScoreLabelValue" type="Label" parent="Level"]
+offset_left = 351.0
+offset_top = 40.0
+offset_right = 451.0
+offset_bottom = 63.0
+theme_override_fonts/font = ExtResource("3_2iokk")
+text = "00000"
+horizontal_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="Level"]
+offset_left = 731.0
+offset_top = 581.0
+offset_right = 771.0
+offset_bottom = 604.0
+theme_override_fonts/font = ExtResource("3_2iokk")
+text = "TIME"
+
+[node name="ProgressBar" type="ProgressBar" parent="Level"]
+offset_left = 352.0
+offset_top = 581.0
+offset_right = 729.0
+offset_bottom = 595.0
+theme_override_styles/background = SubResource("StyleBoxFlat_vj8ay")
+theme_override_styles/fill = SubResource("StyleBoxFlat_07vrc")
+max_value = 20.0
+value = 20.0
+fill_mode = 1
+show_percentage = false
+
+[node name="CountdownTimer" type="Timer" parent="Level"]
+
+[node name="RespawnTimer" type="Timer" parent="Level"]
+wait_time = 0.75
+one_shot = true
 
 [node name="RedCarsSet" type="Node2D" parent="Level"]
 
@@ -282,6 +344,24 @@ position = Vector2(1108, 160)
 [node name="SevenLogs2" parent="Level/SevenLogsSet" instance=ExtResource("12_5xhyk")]
 position = Vector2(-3, 162)
 
+[node name="LifeMarkers" type="Node2D" parent="Level"]
+position = Vector2(13, 578)
+
+[node name="Marker1" type="Sprite2D" parent="Level/LifeMarkers"]
+texture_filter = 1
+position = Vector2(10, 9)
+texture = ExtResource("14_pbrru")
+
+[node name="Marker2" type="Sprite2D" parent="Level/LifeMarkers"]
+texture_filter = 1
+position = Vector2(30, 9)
+texture = ExtResource("14_pbrru")
+
+[node name="Marker3" type="Sprite2D" parent="Level/LifeMarkers"]
+texture_filter = 1
+position = Vector2(50, 9)
+texture = ExtResource("14_pbrru")
+
 [node name="Player" parent="." instance=ExtResource("2_vrspl")]
 position = Vector2(370, 530)
 
@@ -290,6 +370,7 @@ position = Vector2(370, 530)
 [node name="Hazards" type="Node" parent="."]
 
 [node name="Walls" type="Node2D" parent="."]
+visible = false
 
 [node name="Top" type="StaticBody2D" parent="Walls"]
 position = Vector2(0, -92)
@@ -300,9 +381,9 @@ collision_mask = 0
 position = Vector2(401, 144.75)
 shape = SubResource("RectangleShape2D_lyhax")
 
-[node name="Right" type="StaticBody2D" parent="Walls"]
+[node name="Right" type="Area2D" parent="Walls" groups=["splash"]]
 position = Vector2(804, 2)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Right"]
@@ -318,80 +399,76 @@ collision_mask = 0
 position = Vector2(402, -14.5)
 shape = SubResource("RectangleShape2D_gg4pt")
 
-[node name="Left" type="StaticBody2D" parent="Walls"]
+[node name="Left" type="Area2D" parent="Walls" groups=["splash", "vehicles"]]
 position = Vector2(-120, 5)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Left"]
-position = Vector2(54, 302)
+position = Vector2(57, 302)
 shape = SubResource("RectangleShape2D_wnrko")
 
-[node name="Hedge1" type="StaticBody2D" parent="Walls"]
-collision_layer = 16
+[node name="Hedge1" type="Area2D" parent="Walls" groups=["splash"]]
+collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Hedge1"]
-position = Vector2(12, 124)
+position = Vector2(8, 124)
 shape = SubResource("RectangleShape2D_qf6a8")
 
-[node name="Hedge2" type="StaticBody2D" parent="Walls"]
+[node name="Hedge2" type="Area2D" parent="Walls" groups=["splash"]]
 position = Vector2(127, 124)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Hedge2"]
-position = Vector2(1, -1.5)
+position = Vector2(1.5, -1.5)
 shape = SubResource("RectangleShape2D_56wml")
 
-[node name="Hedge3" type="StaticBody2D" parent="Walls"]
+[node name="Hedge3" type="Area2D" parent="Walls" groups=["splash"]]
 position = Vector2(255, 127)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Hedge3"]
-position = Vector2(0.5, -0.5)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_aptqa")
 
-[node name="Hedge4" type="StaticBody2D" parent="Walls"]
+[node name="Hedge4" type="Area2D" parent="Walls" groups=["splash"]]
 position = Vector2(401, 125)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Hedge4"]
 position = Vector2(-2, 1.5)
 shape = SubResource("RectangleShape2D_gynul")
 
-[node name="Hedge5" type="StaticBody2D" parent="Walls"]
+[node name="Hedge5" type="Area2D" parent="Walls" groups=["splash"]]
 position = Vector2(543, 126)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Hedge5"]
-position = Vector2(0, 1.5)
+position = Vector2(1, 1.5)
 shape = SubResource("RectangleShape2D_60iot")
 
-[node name="Hedge6" type="StaticBody2D" parent="Walls"]
+[node name="Hedge6" type="Area2D" parent="Walls" groups=["splash"]]
 position = Vector2(666, 110)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Hedge6"]
 position = Vector2(5, 19)
 shape = SubResource("RectangleShape2D_5xhyk")
 
-[node name="Hedge7" type="StaticBody2D" parent="Walls"]
+[node name="Hedge7" type="Area2D" parent="Walls" groups=["splash"]]
 position = Vector2(776, 104)
-collision_layer = 16
+collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/Hedge7"]
-position = Vector2(14, 22)
+position = Vector2(18.75, 22)
 shape = SubResource("RectangleShape2D_2iokk")
-
-[node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 0.1
-autostart = true
 
 [node name="Homes" type="Node2D" parent="."]
 
@@ -418,6 +495,10 @@ visible = false
 z_index = 1000
 game_scene = NodePath("..")
 
+[node name="GameOverOverlay" parent="." node_paths=PackedStringArray("game_scene") instance=ExtResource("17_07vrc")]
+visible = false
+game_scene = NodePath("..")
+
 [node name="Snake" parent="." instance=ExtResource("17_2kuj7")]
 z_index = 1
 position = Vector2(-100, -100)
@@ -425,6 +506,8 @@ position = Vector2(-100, -100)
 [node name="PinkFrog" parent="." instance=ExtResource("18_vj8ay")]
 position = Vector2(-100, -100)
 
+[connection signal="timeout" from="Level/RespawnTimer" to="." method="_on_respawn_timer_timeout"]
 [connection signal="got_home" from="Player" to="." method="_on_player_got_home"]
 [connection signal="got_pink_frog" from="Player" to="." method="_on_player_got_pink_frog"]
 [connection signal="jump_foward" from="Player" to="." method="_on_player_jump_foward"]
+[connection signal="spawn" from="Player" to="." method="_on_player_spawn"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://dc4r0e2kq82ob"]
+[gd_scene load_steps=7 format=3 uid="uid://dc4r0e2kq82ob"]
 
 [ext_resource type="Script" uid="uid://dy8f4un8lcwqq" path="res://scenes/how_to/how_to.gd" id="1_1tgl3"]
+[ext_resource type="Theme" uid="uid://j1f6erskars" path="res://project_theme.tres" id="1_rurol"]
+[ext_resource type="PackedScene" uid="uid://dua5cpqq4eqpw" path="res://scenes/RadialTextureRect.tscn" id="2_56h0y"]
 [ext_resource type="FontFile" uid="uid://bnwxsyvjp025u" path="res://assets/fonts/press-start.k.ttf" id="2_vteru"]
 [ext_resource type="FontFile" uid="uid://qujkoumo4ukj" path="res://assets/fonts/betsy-flanagan.regular.otf" id="3_81brg"]
+[ext_resource type="PackedScene" uid="uid://bdduhtqrl58gp" path="res://scenes/patch_rect/PatchRect.tscn" id="3_rurol"]
 
 [node name="HowTo" type="Control"]
 layout_mode = 3
@@ -11,12 +14,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_rurol")
 script = ExtResource("1_1tgl3")
+
+[node name="RadialTextureRect" parent="." instance=ExtResource("2_56h0y")]
+layout_mode = 0
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
+offset_top = -1.0
 offset_right = 801.0
 offset_bottom = 579.0
+
+[node name="PatchRect" parent="CenterContainer" instance=ExtResource("3_rurol")]
+custom_minimum_size = Vector2(650, 500)
+layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
@@ -26,6 +38,7 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("2_vteru")
 theme_override_font_sizes/font_size = 28
 text = "How To Play"
+horizontal_alignment = 1
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -149,7 +162,6 @@ text = "10"
 
 [node name="Label8" type="Label" parent="CenterContainer/VBoxContainer/GridContainer2"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_vteru")
 text = "Every second remaing after
 filling frog homes"
 

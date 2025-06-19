@@ -1,0 +1,29 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://j1f6erskars"]
+
+[ext_resource type="FontFile" uid="uid://bnwxsyvjp025u" path="res://assets/fonts/press-start.k.ttf" id="1_tf5ee"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf5ee"]
+bg_color = Color(0.859114, 0.459571, 0.0255759, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tpbpl"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.694378, 0.335432, 0.0750241, 1)
+shadow_color = Color(0.114897, 0.114897, 0.114897, 0.6)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xx24o"]
+bg_color = Color(0.771653, 0.557633, 0.0649433, 1)
+
+[resource]
+default_font = ExtResource("1_tf5ee")
+default_font_size = 12
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_tf5ee")
+Button/styles/normal = SubResource("StyleBoxFlat_tpbpl")
+Button/styles/pressed = SubResource("StyleBoxFlat_xx24o")
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)

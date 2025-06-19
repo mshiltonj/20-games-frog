@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdduhtqrl58gp"]
+
+[ext_resource type="Texture2D" uid="uid://b4pyryk6eeirr" path="res://scenes/patch_rect/patch_rect.png" id="1_yksf1"]
+
+[node name="PatchRect" type="NinePatchRect"]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 3.0
+offset_right = -638.0
+offset_bottom = -481.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_yksf1")
+patch_margin_left = 8
+patch_margin_top = 9
+patch_margin_right = 12
+patch_margin_bottom = 11

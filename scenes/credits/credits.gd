@@ -23,7 +23,13 @@ Home SFX:
 Complete Level:
 	LevelUp -- Kenneth_Cooney
 	https://freesound.org/people/Kenneth_Cooney/sounds/609335/
-
+	
+TickTock: 
+	Ticking Stopwatch (dry) -- DavidJGurney
+	https://pixabay.com/sound-effects/ticking-stopwatch-dry-103837/
+	
+Game Over:
+	https://sfbgames.itch.io/chiptone
 """
 
 var font_credits : String = """
